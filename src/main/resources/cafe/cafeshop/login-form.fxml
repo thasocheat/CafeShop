@@ -16,43 +16,52 @@
       <AnchorPane fx:id="su_signupForm" prefHeight="425.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css">
          <children>
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
-            <Button fx:id="su_signUpBtn" layoutX="71.0" layoutY="332.0" mnemonicParsing="false" onAction="#regBtn" prefHeight="40.0" prefWidth="160.0" text="Sign Up" />
+            <Button fx:id="su_signUpBtn" layoutX="71.0" layoutY="367.0" mnemonicParsing="false" onAction="#regBtn" prefHeight="40.0" prefWidth="160.0" text="Sign Up" />
             <Label layoutX="71.0" layoutY="19.0" prefHeight="40.0" prefWidth="160.0" text="Register Account">
                <font>
                   <Font name="!Khmer OS Siemreap" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="su_answer" layoutX="70.0" layoutY="278.0" prefHeight="40.0" prefWidth="160.0" promptText="Answer" />
-            <TextField fx:id="su_password" layoutX="71.0" layoutY="174.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-            <TextField fx:id="su_username" layoutX="71.0" layoutY="123.0" prefHeight="40.0" prefWidth="160.0" promptText="Username" />
-            <ComboBox fx:id="su_question" layoutX="69.0" layoutY="227.0" prefHeight="40.0" prefWidth="160.0" promptText="Question" />
-         </children>
-      </AnchorPane>
-      <AnchorPane id="sideForm" fx:id="side_form" prefHeight="425.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css">
-         <children>
-            <Button fx:id="si_haveAccBtn" layoutX="70.0" layoutY="331.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="160.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Already have account?" />
-            <Label layoutX="81.0" layoutY="280.0" prefHeight="40.0" prefWidth="141.0" text="Create new account" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="111.0" layoutY="180.0" prefHeight="40.0" prefWidth="79.0" text="Cafe Shop" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="si_createNew" layoutX="70.0" layoutY="331.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="160.0" text="Create new account" />
-            <ImageView cache="true" disable="true" fitHeight="137.0" fitWidth="148.0" layoutX="70.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="su_answer" layoutX="70.0" layoutY="313.0" prefHeight="40.0" prefWidth="160.0" promptText="Answer" />
+            <TextField fx:id="su_password" layoutX="71.0" layoutY="209.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
+            <TextField fx:id="su_username" layoutX="71.0" layoutY="158.0" prefHeight="40.0" prefWidth="160.0" promptText="Username" />
+            <ComboBox fx:id="su_question" layoutX="69.0" layoutY="262.0" prefHeight="40.0" prefWidth="160.0" promptText="Question" />
+            <ImageView fitHeight="96.0" fitWidth="86.0" layoutX="111.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../libaries_icons/icons8-cafe-100.png" />
+                  <Image url="@../../libaries_icons/customer.png" />
                </image>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="87.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../libaries_icons/register.png" />
+               </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane id="si_loginForm" fx:id="su_forgotPassForm" layoutX="300.0" layoutY="-1.0" prefHeight="425.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css">
+      <AnchorPane fx:id="su_loginForm" layoutX="300.0" prefHeight="425.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css">
+         <children>
+            <Label layoutX="87.0" layoutY="28.0" prefHeight="51.0" prefWidth="129.0" text="Login Account">
+               <font>
+                  <Font name="!Khmer OS Siemreap" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sus_username" layoutX="81.0" layoutY="184.0" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" promptText="Username" styleClass="textfield" stylesheets="@loginDesign.css" />
+            <Hyperlink fx:id="si_forgotPass" layoutX="81.0" layoutY="305.0" text="Forgot Password" textFill="#0344f5" />
+            <Button fx:id="si_loginBtn" layoutX="81.0" layoutY="345.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Log In" />
+            <TextField fx:id="sus_password" layoutX="81.0" layoutY="231.0" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" promptText="Password" styleClass="textfield" stylesheets="@loginDesign.css" />
+            <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="87.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../libaries_icons/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="86.0" layoutX="108.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../libaries_icons/permission.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="si_loginForm" fx:id="su_forgotPassForm" layoutX="300.0" layoutY="-1.0" prefHeight="425.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css" visible="false">
          <children>
             <Button fx:id="backBtn" layoutX="15.0" layoutY="17.0" mnemonicParsing="false" text="Back" />
             <Label layoutX="76.0" layoutY="87.0" text="Forgot Password" textFill="WHITE">
@@ -66,17 +75,46 @@
             <TextField fx:id="fo_username" layoutX="70.0" layoutY="160.0" prefHeight="40.0" prefWidth="160.0" promptText="Username" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="su_loginForm" layoutX="300.0" prefHeight="425.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css">
+      <AnchorPane id="sideForm" fx:id="side_form" prefHeight="425.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css">
          <children>
-            <Label layoutX="86.0" layoutY="28.0" prefHeight="51.0" prefWidth="129.0" text="Login Account">
+            <Label fx:id="new_have_text" alignment="CENTER" layoutX="38.0" layoutY="280.0" prefHeight="40.0" prefWidth="223.0" text="Create new account" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="!Khmer OS Siemreap" size="20.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="sus_username" layoutX="81.0" layoutY="184.0" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" promptText="Username" styleClass="textfield" stylesheets="@loginDesign.css" />
-            <Hyperlink fx:id="si_forgotPass" layoutX="81.0" layoutY="305.0" text="Forgot Password" textFill="#0344f5" />
-            <Button fx:id="si_loginBtn" layoutX="81.0" layoutY="345.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Log In" />
-            <TextField fx:id="sus_password" layoutX="81.0" layoutY="231.0" onAction="#loginBtn" prefHeight="40.0" prefWidth="160.0" promptText="Password" styleClass="textfield" stylesheets="@loginDesign.css" />
+            <Label layoutX="111.0" layoutY="180.0" prefHeight="40.0" prefWidth="79.0" text="Cafe Shop" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView cache="true" disable="true" fitHeight="137.0" fitWidth="148.0" layoutX="70.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../libaries_icons/icons8-cafe-100.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <AnchorPane fx:id="register_pan" layoutX="61.0" layoutY="320.0" prefHeight="57.0" prefWidth="182.0">
+               <children>
+                  <Button fx:id="si_haveAccBtn" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="169.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Already have account?" />
+                  <ImageView fitHeight="30.0" fitWidth="22.0" layoutX="15.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../libaries_icons/login.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="creat_new_pan" layoutX="57.0" layoutY="320.0" prefHeight="57.0" prefWidth="169.0">
+               <children>
+                  <Button fx:id="si_createNew" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="12.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="169.0" text="Create new account" textAlignment="RIGHT" />
+                  <ImageView fitHeight="30.0" fitWidth="22.0" layoutX="21.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../libaries_icons/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

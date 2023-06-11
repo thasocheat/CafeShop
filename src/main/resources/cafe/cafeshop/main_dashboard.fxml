@@ -7,11 +7,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.cafeshop.MainDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.cafeshop.MainDashboardController">
    <children>
       <AnchorPane layoutX="-2.0" prefHeight="600.0" prefWidth="1000.0">
          <children>
@@ -20,11 +22,32 @@
                   <AnchorPane prefHeight="600.0" prefWidth="225.0" styleClass="sidebar-bg" stylesheets="@main_dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="btn_dashboard" layoutX="19.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="182.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Dashboard" />
-                        <Button fx:id="btn_inventory" layoutX="19.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="182.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Inventory" />
+                        <Button fx:id="btn_inventory" layoutX="19.0" layoutY="223.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="182.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Inventory" />
                         <Label layoutX="19.0" layoutY="14.0" prefHeight="39.0" prefWidth="97.0" text="Welcome Back : " textFill="#f8f5f5" />
                         <Label fx:id="label_username" layoutX="125.0" layoutY="25.0" prefHeight="17.0" prefWidth="84.0" text="User Name" textFill="#f8f4f4" />
-                        <Button fx:id="btn_users" layoutX="20.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="182.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Users" />
+                        <Button fx:id="btn_users" layoutX="20.0" layoutY="274.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="181.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Users" />
                         <Button fx:id="logout_btn" layoutX="19.0" layoutY="53.0" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="96.0" text="Log out" />
+                        <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="26.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../libaries_icons/inventory.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="26.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../libaries_icons/dashboard.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="26.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../libaries_icons/team.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btn_inventory1" layoutX="20.0" layoutY="171.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="181.0" styleClass="create-btn" stylesheets="@loginDesign.css" text="Profile" />
+                        <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="27.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../libaries_icons/inventory.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </left>
@@ -36,6 +59,11 @@
                               <Font name="!Khmer OS Siemreap" size="30.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="89.0" fitWidth="74.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../libaries_icons/icons8-cafe-100.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </top>
@@ -91,6 +119,11 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="126.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="279.0" layoutY="28.0" prefHeight="79.0" prefWidth="191.0" stylesheets="@main_dashboard.css">
@@ -109,6 +142,11 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="129.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="524.0" layoutY="28.0" prefHeight="79.0" prefWidth="191.0" stylesheets="@main_dashboard.css">
@@ -127,6 +165,81 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="129.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <ImageView fitHeight="61.0" fitWidth="72.0" layoutX="79.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                              <AnchorPane layoutX="35.0" layoutY="135.0" prefHeight="79.0" prefWidth="191.0" stylesheets="@main_dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="card-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="105.0" text="Total Users" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="count_users1" layoutX="7.0" layoutY="43.0" prefHeight="29.0" prefWidth="105.0" text="0" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="126.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="278.0" layoutY="135.0" prefHeight="79.0" prefWidth="191.0" stylesheets="@main_dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="card-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="105.0" text="Total Customer" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="7.0" layoutY="43.0" prefHeight="29.0" prefWidth="105.0" text="Number" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="129.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="523.0" layoutY="135.0" prefHeight="79.0" prefWidth="191.0" stylesheets="@main_dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="card-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="105.0" text="Total Customer" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="7.0" layoutY="43.0" prefHeight="29.0" prefWidth="105.0" text="Number" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="55.0" fitWidth="51.0" layoutX="129.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../libaries_icons/team.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>

@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -60,7 +57,14 @@ public class LoginController implements Initializable {
     // This for create new panel
     private Button si_createNew;
 
+    @FXML
+    private AnchorPane creat_new_pan;
 
+    @FXML
+    private AnchorPane register_pan;
+
+    @FXML
+    private Label new_have_text;
 
     // Question list
     private String[] questionList = {"What is your favorite Color?", "What is your favorite food?", "what is your birth date?"};
@@ -93,8 +97,15 @@ public class LoginController implements Initializable {
                 // Show button have account
                 si_haveAccBtn.setVisible(true);
 
-                // Hide button create new
+                // Hide button create new or panel
                 si_createNew.setVisible(false);
+                creat_new_pan.setVisible(false);
+
+                // Show register panel
+                register_pan.setVisible(true);
+
+                // Show create new text
+                new_have_text.setText("Create New Account.");
 
                 // Hide panel new password
                 su_forgotPassForm.setVisible(false);
@@ -118,8 +129,17 @@ public class LoginController implements Initializable {
                 // Show button have account
                 si_haveAccBtn.setVisible(false);
 
-                // Hide button create new
+                // Show create new panel
+                creat_new_pan.setVisible(true);
                 si_createNew.setVisible(true);
+
+                // Show create new text
+                new_have_text.setText("Log In To Your Account.");
+
+                // Hide button create new or register pan
+                register_pan.setVisible(false);
+
+
 
                 // Hide panel new password
                 su_forgotPassForm.setVisible(false);
@@ -299,6 +319,9 @@ public class LoginController implements Initializable {
 
                     // If user is true than open the dashboard
                     Parent root = FXMLLoader.load(getClass().getResource("main_dashboard.fxml"));
+
+                    //Parent root = FXMLLoader.load(getClass().getResource("main_dashboard.fxml"));
+
 
 
                     Stage stage = new Stage();
