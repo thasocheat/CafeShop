@@ -23,30 +23,30 @@ public class CafeShopManagement extends Application {
 
 
 
-        String url = "jdbc:mysql://localhost:3306/test";
-        String user = "root";
-        String password = "1234";
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connect = DriverManager.getConnection(url,user,password);
-            System.out.println("Connection is Successful to the database"+url);
-//            return connect;
-        }catch (Exception e) {
-            e.printStackTrace();
+//        String url = "jdbc:mysql://localhost:3306/test";
+//        String user = "root";
+//        String password = "1234";
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            Connection connect = DriverManager.getConnection(url,user,password);
+//            System.out.println("Connection is Successful to the database"+url);
+////            return connect;
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//
+//        }
 
-        }
-
-//        Parent root = FXMLLoader.load(getClass().getResource("login-form.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login-form.fxml"));
 ////        Parent root = FXMLLoader.load(getClass().getResource("main_dashboard.fxml"));
 //
 //
 //
-//        Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
 //
-//        stage.setTitle("Cafe Shop Management System");
+        stage.setTitle("Cafe Shop Management System");
 //
-//        stage.setScene(scene);
-//        stage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
