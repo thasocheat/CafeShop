@@ -14,26 +14,26 @@ import java.sql.Date;
 public class customersData {
 
     private Integer id;
-    private Integer customerID;
+    private Integer userId;
     private Double total;
     private Date date;
-    private String emUsername;
+    private String Usname;
 
-    public customersData(Integer id, Integer customerID, Double total,
-             Date date, String emUsername) {
+    public customersData(Integer id, Integer userId, Double total,
+             Date date, String Usname) {
         this.id = id;
-        this.customerID = customerID;
+        this.userId = userId;
         this.total = total;
         this.date = date;
-        this.emUsername = emUsername;
+        this.Usname = Usname;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public Integer getCustomerID() {
-        return customerID;
+    public Integer getuserId() {
+        return userId;
     }
 
     public Double getTotal() {
@@ -44,8 +44,8 @@ public class customersData {
         return date;
     }
 
-    public String getEmUsername() {
-        return emUsername;
+    public String getUsname() {
+        return Usname;
     }
 
 }
