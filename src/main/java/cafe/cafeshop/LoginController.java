@@ -4,15 +4,13 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
-// Use Initializable for fxml
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -327,7 +325,9 @@ public class LoginController implements Initializable {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
 
-                    stage.setTitle("Cafe Shop Management System");
+                    // Set the application icon.
+                    stage.getIcons().add(new Image(CafeShopManagement.class.getResourceAsStream("icons8-cafe-100.png")));
+                    stage.setTitle("Cafe Shop Management System Dashboard");
                     stage.setMinWidth(1000);
                     stage.setMinHeight(600);
 

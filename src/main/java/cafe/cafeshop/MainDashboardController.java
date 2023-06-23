@@ -10,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,12 +17,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
-import java.util.Date;
 
 import static cafe.cafeshop.data.*;
 
@@ -94,7 +102,6 @@ public class MainDashboardController implements Initializable {
         if (event.getSource() == btn_dashboard) {
             dashboard_form.setVisible(true);
             item_form.setVisible(false);
-//            menu_form.setVisible(false);
             user_form.setVisible(false);
             item_form.setVisible(false);
             menu_form.setVisible(false);
@@ -104,9 +111,9 @@ public class MainDashboardController implements Initializable {
 
 
             dashboardDisplayNC();
-//            dashboardDisplayTI();
-//            dashboardTotalI();
-//            dashboardNSP();
+            dashboardDisplayTI();
+            dashboardTotalI();
+            dashboardNSP();
 //            dashboardIncomeChart();
 //            dashboardCustomerChart();
 
@@ -132,12 +139,9 @@ public class MainDashboardController implements Initializable {
 
 
 
-//            menu_form.setVisible(false);
-//            customers_form.setVisible(false);
-//
-//            inventoryTypeList();
-//            inventoryStatusList();
-//            inventoryShowData();
+            itemTypeList();
+            itemStatusList();
+            itemShowData();
 
         }else if (event.getSource() == btn_menu) {
             menu_form.setVisible(true);
@@ -156,8 +160,8 @@ public class MainDashboardController implements Initializable {
 
 //
             menuDisplayCard();
-//            menuDisplayTotal();
-//            menuShowOrderData();
+            menuDisplayTotal();
+            menuShowOrderData();
         } else if (event.getSource() == btn_costumers) {
             customer_form.setVisible(true);
             menu_form.setVisible(false);
@@ -165,17 +169,12 @@ public class MainDashboardController implements Initializable {
             dashboard_form.setVisible(false);
             user_form.setVisible(false);
 
-//            menu_form.setVisible(false);menu_form
-//            customers_form.setVisible(false);
-//
-//            inventoryTypeList();
-//            inventoryStatusList();
-//            inventoryShowData();
-
-//
-//            menuDisplayCard();
-//            menuDisplayTotal();
-//            menuShowOrderData();
+            itemTypeList();
+            itemStatusList();
+            itemShowData();
+            menuDisplayCard();
+            menuDisplayTotal();
+            menuShowOrderData();
         } else if (event.getSource() == btn_users) {
             dashboard_form.setVisible(false);
             item_form.setVisible(false);
@@ -347,31 +346,7 @@ public class MainDashboardController implements Initializable {
 
         table_customView.setItems(customersListData);
     }
-    public void menuGetTotal() {
-        customerID();
-        String total = "SELECT SUM(price) FROM customers WHERE userId = " + cID;
 
-        connect = database.connectDB();
-
-        try {
-
-            prepare = connect.prepareStatement(total);
-            result = prepare.executeQuery();
-
-            if (result.next()) {
-                totalP = result.getDouble("SUM(price)");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void menuDisplayTotal() {
-        menuGetTotal();
-        menu_total.setText("$" + totalP);
-    }
 
     @FXML
     private TableView<usersData> users_table_view;
@@ -410,6 +385,15 @@ public class MainDashboardController implements Initializable {
     // Count user
     @FXML
     private Label count_users;
+
+    @FXML
+    private Label dashboard_TI;
+
+    @FXML
+    private Label dashboard_TotalI;
+
+    @FXML
+    private Label dashboard_NSP;
     public void dashboardDisplayNC() {
 
         String sql = "SELECT COUNT(id) FROM users";
@@ -429,6 +413,72 @@ public class MainDashboardController implements Initializable {
         }
 
 
+    }
+
+    public void dashboardDisplayTI() {
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        String sql = "SELECT SUM(total) FROM receipt WHERE date = '"
+                + sqlDate + "'";
+
+        connect = database.connectDB();
+
+        try {
+            double ti = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                ti = result.getDouble("SUM(total)");
+            }
+
+            dashboard_TI.setText("$" + ti);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboardTotalI() {
+        String sql = "SELECT SUM(total) FROM receipt";
+
+        connect = database.connectDB();
+
+        try {
+            float ti = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                ti = result.getFloat("SUM(total)");
+            }
+            dashboard_TotalI.setText("$" + ti);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboardNSP() {
+
+        String sql = "SELECT COUNT(quantity) FROM customers";
+
+        connect = database.connectDB();
+
+        try {
+            int q = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                q = result.getInt("COUNT(quantity)");
+            }
+            dashboard_NSP.setText(String.valueOf(q));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Log out button
@@ -714,7 +764,8 @@ public class MainDashboardController implements Initializable {
     }
 
 
-
+    @FXML
+    private TextField it_id;
     @FXML
     private TextField it_name;
     @FXML
@@ -768,26 +819,27 @@ public class MainDashboardController implements Initializable {
                     alert.showAndWait();
                 } else {
                     String insertData = "INSERT INTO items "
-                            + "(item_name, type, stock, price, status, image, date) "
-                            + "VALUES(?,?,?,?,?,?,?)";
+                            + "(item_id, item_name, type, stock, price, status, image, date) "
+                            + "VALUES(?,?,?,?,?,?,?,?)";
 
                     prepare = connect.prepareStatement(insertData);
-                    prepare.setString(1, it_name.getText());
-                    prepare.setString(2, (String) it_type.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, it_stock.getText());
-                    prepare.setString(4, it_price.getText());
-                    prepare.setString(5, (String) it_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(1, it_id.getText());
+                    prepare.setString(2, it_name.getText());
+                    prepare.setString(3, (String) it_type.getSelectionModel().getSelectedItem());
+                    prepare.setString(4, it_stock.getText());
+                    prepare.setString(5, it_price.getText());
+                    prepare.setString(6, (String) it_status.getSelectionModel().getSelectedItem());
 
                     String path = data.path;
                     path = path.replace("\\", "\\\\");
 
-                    prepare.setString(6, path);
+                    prepare.setString(7, path);
 
                     // TO GET CURRENT DATE
                     Date date = new Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                    prepare.setString(7, String.valueOf(sqlDate));
+                    prepare.setString(8, String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
@@ -827,15 +879,23 @@ public class MainDashboardController implements Initializable {
             String path = data.path;
             path = path.replace("\\", "\\\\");
 
-            String updateData = "UPDATE items SET "
-                    + "', prod_name = '"
-                    + it_name.getText() + "', type = '"
-                    + it_type.getSelectionModel().getSelectedItem() + "', stock = '"
-                    + it_stock.getText() + "', price = '"
-                    + it_price.getText() + "', status = '"
-                    + it_status.getSelectionModel().getSelectedItem() + "', image = '"
-                    + path + "', date = '"
-                    + data.date + "' WHERE id = " + data.id;
+            String query = "UPDATE items SET item_id='"+
+                    it_id.getText()+"'," +
+                    "item_name='"+ it_name.getText()+
+                    "',type='"+ it_type.getSelectionModel().getSelectedItem()+
+                    "',stock='"+ it_stock.getText()+
+                    "',price='"+ it_price.getText()+
+                    "',status='"+ it_status.getSelectionModel().getSelectedItem()+
+                    "', image = '" + path +
+                    "',date='"+ data.date +"' WHERE id="+data.id+"";
+
+//            String updateData = "UPDATE items SET "+ "' item_id = " + it_id.getText()+ "', item_name = '" + it_name.getText() + "', type = '"
+//                    + it_type.getSelectionModel().getSelectedItem() + "', stock = '"
+//                    + it_stock.getText() + "', price = '"
+//                    + it_price.getText() + "', status = '"
+//                    + it_status.getSelectionModel().getSelectedItem() + "', image = '"
+//                    + path + "', date = '"
+//                    + data.date + "' WHERE id = " + data.id;
 
             connect = database.connectDB();
 
@@ -848,7 +908,7 @@ public class MainDashboardController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    prepare = connect.prepareStatement(updateData);
+                    prepare = connect.prepareStatement(query);
                     prepare.executeUpdate();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -858,7 +918,7 @@ public class MainDashboardController implements Initializable {
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
-//                    inventoryShowData();
+                    itemShowData();
                     // TO CLEAR YOUR FIELDS
                     itemClearBtn();
                 } else {
@@ -903,7 +963,7 @@ public class MainDashboardController implements Initializable {
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
-//                    inventoryShowData();
+                    itemShowData();
                     // TO CLEAR YOUR FIELDS
                     itemClearBtn();
 
@@ -922,6 +982,7 @@ public class MainDashboardController implements Initializable {
 
     public void itemClearBtn() {
 
+        it_id.setText("");
         it_name.setText("");
         it_type.getSelectionModel().clearSelection();
         it_stock.setText("");
@@ -940,9 +1001,14 @@ public class MainDashboardController implements Initializable {
 
 
     // TO SHOW DATA ON OUR TABLE
+    @FXML
     private TableView<itemsData> item_tableView;
+
     @FXML
     private TableColumn<itemsData, String> item_col_id;
+
+    @FXML
+    private TableColumn<itemsData, String> item_col_idNo;
 
     @FXML
     private TableColumn<itemsData, String> item_col_name;
@@ -1024,8 +1090,8 @@ public class MainDashboardController implements Initializable {
     public void itemShowData() {
         itemListData = itemsDataList();
 
-        item_col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        item_col_name.setCellValueFactory(new PropertyValueFactory<>("item_id"));
+        item_col_idNo.setCellValueFactory(new PropertyValueFactory<>("id"));
+        item_col_id.setCellValueFactory(new PropertyValueFactory<>("item_id"));
         item_col_name.setCellValueFactory(new PropertyValueFactory<>("item_name"));
         item_col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         item_col_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -1033,7 +1099,7 @@ public class MainDashboardController implements Initializable {
         item_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         item_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-//        item_tableView.setItems(itemListData);
+        item_tableView.setItems(itemListData);
 
     }
 
@@ -1046,10 +1112,10 @@ public class MainDashboardController implements Initializable {
             return;
         }
 
-//        item_id.setText(itemData.getId());
-        item_col_name.setText(itemData.getItem_name());
-        item_col_stock.setText(String.valueOf(itemData.getStock()));
-        item_col_price.setText(String.valueOf(itemData.getPrice()));
+        it_id.setText(itemData.getItem_id());
+        it_name.setText(itemData.getItem_name());
+        it_stock.setText(String.valueOf(itemData.getStock()));
+        it_price.setText(String.valueOf(itemData.getPrice()));
 
         data.path = itemData.getImage();
 
@@ -1150,14 +1216,14 @@ public class MainDashboardController implements Initializable {
                 itemCardController cardC = load.getController();
                 cardC.setData(cardListData.get(q));
 
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     row += 1;
                 }
 
                 menu_gridPane.add(pane, column++, row);
 
-                GridPane.setMargin(pane, new Insets(2));
+                GridPane.setMargin(pane, new Insets(10));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1184,6 +1250,34 @@ public class MainDashboardController implements Initializable {
     private TextField menu_amount;
     private double amount;
     private double change;
+
+    private int cID;
+
+    public void menuGetTotal() {
+        customerID();
+        String total = "SELECT SUM(price) FROM customers WHERE userId = " + cID;
+
+        connect = database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(total);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                totalP = result.getDouble("SUM(price)");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void menuDisplayTotal() {
+        menuGetTotal();
+        menu_total.setText("$" + totalP);
+    }
 
     public void menuAmount() {
         menuGetTotal();
@@ -1235,8 +1329,10 @@ public class MainDashboardController implements Initializable {
                     Optional<ButtonType> option = alert.showAndWait();
 
                     if (option.get().equals(ButtonType.OK)) {
+
                         customerID();
                         menuGetTotal();
+
                         prepare = connect.prepareStatement(insertPay);
                         prepare.setString(1, String.valueOf(cID));
                         prepare.setString(2, String.valueOf(totalP));
@@ -1388,6 +1484,18 @@ public class MainDashboardController implements Initializable {
         menu_tableView.setItems(menuOrderListData);
     }
 
+    public void menuSelectOrder() {
+        itemsData prod = menu_tableView.getSelectionModel().getSelectedItem();
+        int num = menu_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+        // TO GET THE ID PER ORDER
+        getid = prod.getId();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -1404,6 +1512,9 @@ public class MainDashboardController implements Initializable {
 
         // Call
         dashboardDisplayNC();
+        dashboardDisplayTI();
+        dashboardTotalI();
+        dashboardNSP();
 
         // Show item card
         menuDisplayCard();

@@ -62,7 +62,7 @@ public class itemCardController implements Initializable {
         item_image = itemsData.getImage();
         item_date = String.valueOf(itemsData.getDate());
         type = itemsData.getType();
-//        itemID = itemsData.getItemId();
+        itemID = itemsData.getItem_id();
         item_name.setText(itemsData.getItem_name());
         item_price.setText("$" + String.valueOf(itemsData.getPrice()));
         String path = "File:" + itemsData.getImage();
@@ -188,6 +188,7 @@ public class itemCardController implements Initializable {
                     alert.showAndWait();
 
                     mForm.menuGetTotal();
+                    mForm.menuShowOrderData();
                 }
             }
         } catch (Exception e) {

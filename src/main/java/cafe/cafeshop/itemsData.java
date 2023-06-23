@@ -31,7 +31,9 @@ public class itemsData {
         this.date = date;
     }
 
-    public itemsData(Integer id, String item_id, String item_name, String type, Integer quantity, Double price, String image, Date date){
+    public itemsData(Integer id, String item_id,
+                     String item_name, String type, Integer quantity,
+                     Double price, String image, Date date){
         this.id = id;
         this.item_id = item_id;
         this.item_name = item_name;
